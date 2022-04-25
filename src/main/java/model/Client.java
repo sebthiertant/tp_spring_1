@@ -10,6 +10,12 @@ public class Client {
         super();
     }
 
+    public Client(Long id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }
@@ -20,5 +26,14 @@ public class Client {
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

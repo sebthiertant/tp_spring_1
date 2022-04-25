@@ -2,23 +2,42 @@ package model;
 
 public class OrderProduct {
 
-    private Long product_id;
-    private Long order_id;
+    private Product product;
+    private Order order;
     private Integer quantity;
 
     public OrderProduct() {
         super();
     }
 
-    public Long getProduct_id() {
-        return product_id;
+
+    public OrderProduct(Product product, Order order, Integer quantity) {
+        this.product = product;
+        this.order = order;
+        this.quantity = quantity;
     }
 
-    public Long getOrder_id() {
-        return order_id;
+    public Product getProduct() {
+        return product;
+    }
+
+    public Order getOrder() {
+        return order;
     }
 
     public Integer getQuantity() {
         return quantity;
+    }
+
+    public Double getTotalPrice() {
+        return product.getPrice() * this.quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderProduct{" +
+                "product=" + product +
+                ", quantity=" + quantity +
+                '}';
     }
 }
