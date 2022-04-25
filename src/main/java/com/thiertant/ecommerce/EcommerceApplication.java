@@ -35,6 +35,7 @@ public class EcommerceApplication {
         order.addProduct(product1, 2);
         order.addProduct(product1, 2);
 
+        order.addProduct(product2, 26);
 
         System.out.println(order);
 

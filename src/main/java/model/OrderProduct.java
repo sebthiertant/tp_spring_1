@@ -29,6 +29,10 @@ public class OrderProduct {
         return quantity;
     }
 
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public Double getTotalPrice() {
         return product.getPrice() * this.quantity;
     }

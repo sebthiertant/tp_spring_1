@@ -52,13 +52,16 @@ public class Order {
     }
 
     public void addProduct(Product product, Integer quantity) {
-        // vérifier si le produit est déja présent avant d'ajouter une nouvelle ligne, et simplement incrémenter la quantité
-            orderProductArrayList.forEach((orderProduct) -> {
-                if (orderProduct.getProduct().getId() == product.getId()){
-                    System.out.println(("Déjà présent   fahzfohazfhazfpihazfpihazfphzafpih !"));
+        boolean uniqueProduct = true;
+        for (int i = 0; i < orderProductArrayList.size(); i++) {
+            if (orderProductArrayList.get(i).getProduct().getId() == product.getId()) {
+                orderProductArrayList.get(i).setQuantity(orderProductArrayList.get(i).getQuantity() + quantity);
+                uniqueProduct = false;
             }
-            });
-        orderProductArrayList.add(new OrderProduct(product, this, quantity));
+        }
+        if (uniqueProduct){
+            orderProductArrayList.add(new OrderProduct(product, this, quantity));
+        }
     }
 
     public Double getTotalOrderPrice(){
