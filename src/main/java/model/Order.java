@@ -60,6 +60,7 @@ public class Order {
                 uniqueProduct = false;
             }
         }
+        // essayer avec find sur l'arrayList
         if (uniqueProduct){
             orderProductArrayList.add(new OrderProduct(product, this, quantity));
         }
@@ -67,10 +68,10 @@ public class Order {
 
     public Double getTotalOrderPrice(){
         Double totalPrice = 0d;
-        //orderProductArrayList.forEach((orderProduct) -> totalPrice += orderProduct.getTotalPrice()); J'aurais préféré cette solution mais je n'arrive pas à comprendre comment la résoudre
         for (int i = 0; i < orderProductArrayList.size(); i++) {
             totalPrice += orderProductArrayList.get(i).getTotalPrice();
         }
+        //orderProductArrayList.stream().map(n -> n.getTotalPrice()).reduce(0d, Double::sum);
         return totalPrice;
     }
 
