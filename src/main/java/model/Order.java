@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Order {
 
@@ -54,7 +55,7 @@ public class Order {
     public void addProduct(Product product, Integer quantity) {
         boolean uniqueProduct = true;
         for (int i = 0; i < orderProductArrayList.size(); i++) {
-            if (orderProductArrayList.get(i).getProduct().getId() == product.getId()) {
+            if (Objects.equals(orderProductArrayList.get(i).getProduct().getId(), product.getId())) {
                 orderProductArrayList.get(i).setQuantity(orderProductArrayList.get(i).getQuantity() + quantity);
                 uniqueProduct = false;
             }
