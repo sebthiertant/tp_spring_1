@@ -37,7 +37,7 @@ public class OrderProduct {
     public String toString() {
         return "OrderProduct{" +
                 "product=" + product +
-                ", quantity=" + quantity +
+                ", quantity=" + this.quantity +
                 '}';
     }
 }

@@ -9,6 +9,7 @@ public class Order {
     private Client client;
     private LocalDate dateCreated;
     private String status;
+    private ArrayList<OrderProduct> orderProductArrayList;
 
     public Order() {
         super();
@@ -19,6 +20,7 @@ public class Order {
         this.client = client;
         this.dateCreated = dateCreated;
         this.status = status;
+        this.orderProductArrayList = new ArrayList<OrderProduct>();
     }
 
     public Long getId() {
@@ -37,6 +39,10 @@ public class Order {
         return status;
     }
 
+    public ArrayList<OrderProduct> getOrderProductArrayList() {
+        return orderProductArrayList;
+    }
+
     public void setStatus(String status) {
         this.status = status;
     }
@@ -46,10 +52,16 @@ public class Order {
     }
 
     public void addProduct(Product product, Integer quantity) {
-        OrderProduct orderProduct = new OrderProduct(product, this, quantity);
+        // vérifier si le produit est déja présent avant d'ajouter une nouvelle ligne, et simplement incrémenter la quantité
+            orderProductArrayList.forEach((orderProduct) -> {
+                if (orderProduct.getProduct().getId() == product.getId()){
+                    System.out.println(("Déjà présent   fahzfohazfhazfpihazfpihazfphzafpih !"));
+            }
+            });
+        orderProductArrayList.add(new OrderProduct(product, this, quantity));
     }
 
-    public Double getTotalOrderPrice(ArrayList<OrderProduct> orderProductArrayList){
+    public Double getTotalOrderPrice(){
         Double totalPrice = 0d;
         //orderProductArrayList.forEach((orderProduct) -> totalPrice += orderProduct.getTotalPrice()); J'aurais préféré cette solution mais je n'arrive pas à comprendre comment la résoudre
         for (int i = 0; i < orderProductArrayList.size(); i++) {
@@ -58,11 +70,11 @@ public class Order {
         return totalPrice;
     }
 
-    public int getNumberOfProducts(ArrayList<OrderProduct> orderProductArrayList) {
+    public int getNumberOfProducts() {
         return (int) orderProductArrayList.stream().distinct().count();
     }
 
-    public int getTotalNumberOfProducts(ArrayList<OrderProduct> orderProductArrayList) {
+    public int getTotalNumberOfProducts() {
         int totalQuantity = 0;
         orderProductArrayList.get(1).getQuantity();
         for (int i = 0; i < orderProductArrayList.size(); i ++) {
@@ -78,6 +90,7 @@ public class Order {
                 ", client=" + client +
                 ", dateCreated=" + dateCreated +
                 ", status='" + status + '\'' +
+                ", orderProductArrayList=" + orderProductArrayList +
                 '}';
     }
 }
