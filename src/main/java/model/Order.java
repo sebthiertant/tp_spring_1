@@ -20,7 +20,7 @@ public class Order {
         this.client = client;
         this.dateCreated = dateCreated;
         this.status = status;
-        this.orderProductArrayList = new ArrayList<OrderProduct>();
+        this.orderProductArrayList = new ArrayList<>();
     }
 
     public Long getId() {
