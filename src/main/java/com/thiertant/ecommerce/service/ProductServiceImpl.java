@@ -20,21 +20,18 @@ public class ProductServiceImpl implements ProductService{
     public Product getProductById(Long id) throws ResourceNotFoundException {
         boolean productNotFound = true;
         try {
-            for (int i = 0; i < allProducts.size(); i++) {
-                if (Objects.equals(allProducts.get(i).getId(), id)){
+            for (Product allProduct : allProducts) {
+                if (Objects.equals(allProduct.getId(), id)) {
                     productNotFound = false;
-                    return allProducts.get(i);
+                    return allProduct;
                 }
             }
             throw new ResourceNotFoundException();
         }
         catch(ResourceNotFoundException e) {
-            e.toString(); // a tester
+            System.out.println(e); // a tester
         }
 
-        if (productNotFound) {
-            System.out.println("Aucun produit n'a été trouvé.");
-        }
         return allProducts.get(1); // return void ?
     }
 

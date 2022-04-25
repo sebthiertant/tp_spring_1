@@ -1,5 +1,6 @@
 package com.thiertant.ecommerce;
 
+import com.thiertant.ecommerce.service.ClientService;
 import com.thiertant.ecommerce.service.ProductService;
 import model.Client;
 import model.Order;
@@ -18,7 +19,7 @@ public class EcommerceApplication {
     public static void main(String[] args) {
         //SpringApplication.run(EcommerceApplication.class, args);
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/java/com/thiertant/ecommerce/services.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("services.xml");
 
         ProductService productService = context.getBean("products", ProductService.class);
 
@@ -32,9 +33,22 @@ public class EcommerceApplication {
         productService.save(product3);
         productService.save(product4);
 
-        productService.getAllProducts().stream().forEach(System.out::println);
-        /*
+        productService.getAllProducts().forEach(System.out::println);
+
+
+        ClientService clientService = context.getBean("clients", ClientService.class);
+
         Client client1 = new Client(18700980L, "Sébastien", "AHFIFZ");
+        Client client2 = new Client(18700272L, "Cécilia", "AHFIFZ");
+
+
+        clientService.save(client1);
+        clientService.save(client2);
+
+        clientService.getAllClient().forEach(System.out::println);
+
+        /*
+
         //System.out.println(client1);
 
         Order order = new Order(946289L, client1, LocalDate.now(), "Payée");
