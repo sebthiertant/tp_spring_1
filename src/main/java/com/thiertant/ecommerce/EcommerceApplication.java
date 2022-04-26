@@ -24,16 +24,15 @@ public class EcommerceApplication {
 
     public static void main(String[] args) throws StockException {
 
-
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(EcommerceApplication.class);
 
         //SpringApplication.run(EcommerceApplication.class, args);
 
-        //ApplicationContext context = new ClassPathXmlApplicationContext("services.xml");
+       // ApplicationContext context = new ClassPathXmlApplicationContext("services.xml");
 
-        //ProductService productService = context.getBean("products", ProductService.class);
+        ProductService productService = context.getBean("products", ProductService.class);
 
-        /*Product product1 = new Product(1547234L, "Produit 1", "Ma description", 12.5, "image/ici", 150);
+        Product product1 = new Product(1547234L, "Produit 1", "Ma description", 12.5, "image/ici", 150);
         Product product2 = new Product(1547227L, "Produit 2", "Ma description", 38.9, "image/ici", 150);
         Product product3 = new Product(122472L, "Produit 3", "Ma description", 150.5, "image/ici", 150);
         Product product4 = new Product(9805472L, "Produit 4", "Ma description", 15.0, "image/ici", 150);
@@ -77,7 +76,7 @@ public class EcommerceApplication {
         }
         catch(StockException e) {
             System.err.println("StockException: " + e.getMessage());
-        }*/
+        }
     }
 
 }

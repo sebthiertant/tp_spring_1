@@ -4,6 +4,7 @@ import com.thiertant.ecommerce.exception.StockException;
 import model.Order;
 import model.OrderProduct;
 import model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.Objects;
 public class OrderServiceImpl implements OrderService{
 
     private List<Order> allOrders = new ArrayList<>();
+    @Autowired
     private ProductService productService;
 
     public ProductService getProductService() {
