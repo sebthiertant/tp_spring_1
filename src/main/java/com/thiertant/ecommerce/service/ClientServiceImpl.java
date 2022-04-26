@@ -2,11 +2,13 @@ package com.thiertant.ecommerce.service;
 
 import com.thiertant.ecommerce.exception.ResourceNotFoundException;
 import model.Client;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Service("clients")
 public class ClientServiceImpl implements ClientService{
 
     private final List<Client> allClient = new ArrayList<>();

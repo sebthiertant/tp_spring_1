@@ -4,11 +4,13 @@ import com.thiertant.ecommerce.exception.StockException;
 import model.Order;
 import model.OrderProduct;
 import model.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Service("orders")
 public class OrderServiceImpl implements OrderService{
 
     private List<Order> allOrders = new ArrayList<>();
@@ -44,7 +46,6 @@ public class OrderServiceImpl implements OrderService{
         return order;
     }
 
-    // TODO
     @Override
     public void update(Order order) throws StockException {
 

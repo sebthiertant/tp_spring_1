@@ -3,11 +3,13 @@ package com.thiertant.ecommerce.service;
 import com.thiertant.ecommerce.exception.ResourceNotFoundException;
 import com.thiertant.ecommerce.exception.StockException;
 import model.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Service("products")
 public class ProductServiceImpl implements ProductService{
     private final List<Product> allProducts = new ArrayList<>();
 
