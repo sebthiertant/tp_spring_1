@@ -10,6 +10,7 @@ import model.OrderProduct;
 import model.Product;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,19 +19,20 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-//@SpringBootApplication
+@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
 @ComponentScan("com.*")
 public class EcommerceApplication {
 
     public static void main(String[] args) throws StockException {
 
+        SpringApplication.run(EcommerceApplication.class, args);
+
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(EcommerceApplication.class);
 
-        //SpringApplication.run(EcommerceApplication.class, args);
 
-       // ApplicationContext context = new ClassPathXmlApplicationContext("services.xml");
+        // ApplicationContext context = new ClassPathXmlApplicationContext("services.xml");
 
-        ProductService productService = context.getBean("products", ProductService.class);
+        /*ProductService productService = context.getBean("products", ProductService.class);
 
         Product product1 = new Product(1547234L, "Produit 1", "Ma description", 12.5, "image/ici", 150);
         Product product2 = new Product(1547227L, "Produit 2", "Ma description", 38.9, "image/ici", 150);
@@ -76,7 +78,7 @@ public class EcommerceApplication {
         }
         catch(StockException e) {
             System.err.println("StockException: " + e.getMessage());
-        }
+        }*/
     }
 
 }

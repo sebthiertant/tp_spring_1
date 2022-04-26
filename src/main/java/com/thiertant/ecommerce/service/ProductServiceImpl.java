@@ -21,20 +21,18 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product getProductById(Long id) throws ResourceNotFoundException {
         boolean productNotFound = true;
-        try {
-            for (Product allProduct : allProducts) {
-                if (Objects.equals(allProduct.getId(), id)) {
-                    productNotFound = false;
-                    return allProduct;
-                }
+
+        for (Product allProduct : allProducts) {
+            if (Objects.equals(allProduct.getId(), id)) {
+                productNotFound = false;
+                return allProduct;
             }
-            throw new ResourceNotFoundException();
-        }
-        catch(ResourceNotFoundException e) {
-            System.out.println(e); // a tester
         }
 
-        return allProducts.get(1); // return void ?
+        if (Objects.equals(productNotFound, true)) {
+            throw new ResourceNotFoundException();
+        }
+        return allProducts.get(1);
     }
 
     @Override
@@ -52,10 +50,10 @@ public class ProductServiceImpl implements ProductService{
     public void removeProduct(Product product, int quantity) throws StockException {
         boolean productNotFound = true;
         try {
-            for (int i = 0; i < allProducts.size(); i++) {
-                if (Objects.equals(allProducts.get(i).getId(), product.getId())){
+            for (Product allProduct : allProducts) {
+                if (Objects.equals(allProduct.getId(), product.getId())) {
                     productNotFound = false;
-                    allProducts.get(i).setQuantity(allProducts.get(i).getQuantity() - quantity);
+                    allProduct.setQuantity(allProduct.getQuantity() - quantity);
                 }
             }
             throw new StockException("Stock insuffisant");

@@ -34,7 +34,7 @@ public class ClientServiceImpl implements ClientService{
             System.out.println(e);
         }
 
-        return allClient.get(1); // return void ?
+        return allClient.get(1);
     }
 
     @Override

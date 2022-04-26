@@ -35,8 +35,8 @@ public class OrderServiceImpl implements OrderService{
     public Order create(Order order) {
 
         boolean matchingOrder = allOrders
-                                .stream()
-                                .anyMatch(o -> Objects.equals(o.getId(), order.getId()));
+                .stream()
+                .anyMatch(o -> Objects.equals(o.getId(), order.getId()));
 
         if (matchingOrder){
             System.out.println("Commande déjà présente.");
