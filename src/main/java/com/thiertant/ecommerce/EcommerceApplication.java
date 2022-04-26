@@ -1,9 +1,12 @@
 package com.thiertant.ecommerce;
 
+import com.thiertant.ecommerce.exception.StockException;
 import com.thiertant.ecommerce.service.ClientService;
+import com.thiertant.ecommerce.service.OrderService;
 import com.thiertant.ecommerce.service.ProductService;
 import model.Client;
 import model.Order;
+import model.OrderProduct;
 import model.Product;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +19,7 @@ import java.util.ArrayList;
 //@SpringBootApplication
 public class EcommerceApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws StockException {
         //SpringApplication.run(EcommerceApplication.class, args);
 
         ApplicationContext context = new ClassPathXmlApplicationContext("services.xml");
@@ -47,6 +50,34 @@ public class EcommerceApplication {
 
         clientService.getAllClient().forEach(System.out::println);
 
+
+        OrderService orderService = context.getBean("orders", OrderService.class);
+        Order order1 = new Order(1L, client1, LocalDate.now(), "null", new ArrayList<OrderProduct>());
+        Order order2 = new Order(2L, client2, LocalDate.now(), "null", new ArrayList<OrderProduct>());
+
+        order1.addProduct(product1, 200);
+        order1.addProduct(product3, 4);
+
+        System.out.println(order1); // Le statut doit être à “null”
+
+
+        // On utilise le bean de type service pour ajouter cette commande
+        orderService.create(order1);
+        System.out.println(order1); // Le statut doit être à “En cours”
+
+
+        try {
+            orderService.update(order1);
+            System.out.println(order1); // Le statut doit être à “Payée”
+        }
+        catch(StockException e) {
+            System.err.println("StockException: " + e.getMessage());
+        }
+
+        //orderService.update(order1);
+
+        //orderService.getAllOrders().forEach(System.out::println);
+
         /*
 
         //System.out.println(client1);
@@ -68,6 +99,7 @@ public class EcommerceApplication {
         System.out.println(order.getTotalOrderPrice());
 
          */
+
     }
 
 }

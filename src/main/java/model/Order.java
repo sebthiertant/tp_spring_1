@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 public class Order {
 
@@ -16,12 +17,12 @@ public class Order {
         super();
     }
 
-    public Order(Long id, Client client, LocalDate dateCreated, String status) {
+    public Order(Long id, Client client, LocalDate dateCreated, String status, ArrayList<OrderProduct> orderProductArrayList) {
         this.id = id;
         this.client = client;
         this.dateCreated = dateCreated;
-        this.status = status;
-        this.orderProductArrayList = new ArrayList<>();
+        this.status = status ;
+        this.orderProductArrayList = orderProductArrayList;
     }
 
     public Long getId() {
@@ -54,9 +55,9 @@ public class Order {
 
     public void addProduct(Product product, Integer quantity) {
         boolean uniqueProduct = true;
-        for (int i = 0; i < orderProductArrayList.size(); i++) {
-            if (Objects.equals(orderProductArrayList.get(i).getProduct().getId(), product.getId())) {
-                orderProductArrayList.get(i).setQuantity(orderProductArrayList.get(i).getQuantity() + quantity);
+        for (OrderProduct orderProduct : orderProductArrayList) {
+            if (Objects.equals(orderProduct.getProduct().getId(), product.getId())) {
+                orderProduct.setQuantity(orderProduct.getQuantity() + quantity);
                 uniqueProduct = false;
             }
         }
@@ -68,8 +69,8 @@ public class Order {
 
     public Double getTotalOrderPrice(){
         Double totalPrice = 0d;
-        for (int i = 0; i < orderProductArrayList.size(); i++) {
-            totalPrice += orderProductArrayList.get(i).getTotalPrice();
+        for (OrderProduct orderProduct : orderProductArrayList) {
+            totalPrice += orderProduct.getTotalPrice();
         }
         //orderProductArrayList.stream().map(n -> n.getTotalPrice()).reduce(0d, Double::sum);
         return totalPrice;
@@ -82,8 +83,8 @@ public class Order {
     public int getTotalNumberOfProducts() {
         int totalQuantity = 0;
         orderProductArrayList.get(1).getQuantity();
-        for (int i = 0; i < orderProductArrayList.size(); i ++) {
-            totalQuantity += orderProductArrayList.get(i).getQuantity();
+        for (OrderProduct orderProduct : orderProductArrayList) {
+            totalQuantity += orderProduct.getQuantity();
         }
         return totalQuantity;
     }

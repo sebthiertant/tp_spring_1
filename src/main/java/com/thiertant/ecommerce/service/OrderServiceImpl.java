@@ -2,6 +2,8 @@ package com.thiertant.ecommerce.service;
 
 import com.thiertant.ecommerce.exception.StockException;
 import model.Order;
+import model.OrderProduct;
+import model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,28 +29,35 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Order create(Order order) {
-        if (Objects.equals(order.getStatus(), "Payée")){
+
+        boolean matchingOrder = allOrders
+                                .stream()
+                                .anyMatch(o -> Objects.equals(o.getId(), order.getId()));
+
+        if (matchingOrder){
+            System.out.println("Commande déjà présente.");
         } else {
             order.setStatus("En cours");
+            allOrders.add(order);
         }
+
         return order;
     }
 
+    // TODO
     @Override
     public void update(Order order) throws StockException {
-        try {
-            order.getOrderProductArrayList();
-            // on itère sur liste des produits contenus dans la commande et on cherche les id dans le productService
 
-
-            //productService.getProductById();
-
-            // Si tout bon
-            order.setStatus("Payée");
-            throw new StockException();
+        for (OrderProduct orderProduct : order.getOrderProductArrayList()) {
+            if (orderProduct.getProduct().getQuantity() - orderProduct.getQuantity() < 0) {
+                throw new StockException("Stock insuffisant");
+            } else {
+                orderProduct.getProduct().setQuantity(orderProduct.getProduct().getQuantity() - orderProduct.getQuantity());
+            }
         }
-        catch(StockException e) {
-            System.out.println(e);
+
+        if(Objects.equals(order.getStatus(), "En cours")) {
+            order.setStatus("Payée");
         }
     }
 }

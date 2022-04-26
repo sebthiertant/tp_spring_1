@@ -56,10 +56,10 @@ public class ProductServiceImpl implements ProductService{
                     allProducts.get(i).setQuantity(allProducts.get(i).getQuantity() - quantity);
                 }
             }
-            throw new StockException();
+            throw new StockException("Stock insuffisant");
         }
         catch(StockException e) {
-            e.toString(); // a tester
+            System.err.println("StockException: " + e.getMessage());
         }
 
         if (productNotFound) {

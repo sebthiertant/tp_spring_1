@@ -4,4 +4,5 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 <bean id="products" class="com.thiertant.ecommerce.service.ProductServiceImpl"></bean>
 <bean id="clients" class="com.thiertant.ecommerce.service.ClientServiceImpl"></bean>
+<bean id="orders" class="com.thiertant.ecommerce.service.OrderServiceImpl"></bean>
 </beans>
