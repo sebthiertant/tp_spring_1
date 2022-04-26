@@ -2,7 +2,7 @@ package com.thiertant.ecommerce.service;
 
 import com.thiertant.ecommerce.exception.ResourceNotFoundException;
 import com.thiertant.ecommerce.exception.StockException;
-import model.Product;
+import com.thiertant.ecommerce.model.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

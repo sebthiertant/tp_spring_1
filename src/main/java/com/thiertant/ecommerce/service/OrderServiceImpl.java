@@ -1,9 +1,8 @@
 package com.thiertant.ecommerce.service;
 
 import com.thiertant.ecommerce.exception.StockException;
-import model.Order;
-import model.OrderProduct;
-import model.Product;
+import com.thiertant.ecommerce.model.Order;
+import com.thiertant.ecommerce.model.OrderProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

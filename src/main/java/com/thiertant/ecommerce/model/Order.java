@@ -1,9 +1,8 @@
-package model;
+package com.thiertant.ecommerce.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 public class Order {
 

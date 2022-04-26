@@ -1,7 +1,7 @@
 package com.thiertant.ecommerce.service;
 
 import com.thiertant.ecommerce.exception.StockException;
-import model.Product;
+import com.thiertant.ecommerce.model.Product;
 
 import java.util.List;
 

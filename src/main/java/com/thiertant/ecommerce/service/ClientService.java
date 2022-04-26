@@ -1,6 +1,6 @@
 package com.thiertant.ecommerce.service;
 
-import model.Client;
+import com.thiertant.ecommerce.model.Client;
 
 import java.util.List;
 

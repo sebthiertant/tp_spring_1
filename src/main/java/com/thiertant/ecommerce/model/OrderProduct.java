@@ -1,4 +1,4 @@
-package model;
+package com.thiertant.ecommerce.model;
 
 public class OrderProduct {
 
