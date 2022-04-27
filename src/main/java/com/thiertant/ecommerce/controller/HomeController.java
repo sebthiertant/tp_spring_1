@@ -12,8 +12,4 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/bonjour")
-    public String printBonjour() {
-        return "Ici on dit Hi";
-    }
 }
